@@ -1,0 +1,89 @@
+{
+  "apikey": "ABCD1234efgh5678.IJKL9012mnopq",
+  "params": {
+    "order_request_id": 12345678,
+    "confirmation": {
+      "header": {
+        "ext_notice_id": "POACK-789",
+        "notice_date": "2022-11-18",
+        "po_payload_id": "93369535150910.10.57.136",
+        "po_order_id": "PO-123",
+        "po_order_date": "2022-11-01",
+        "confirmation_status": "accept",
+        "ship_to": {
+          "address_id": "TN.04",
+          "address_name": "Test Corp. - Nashville Branch",
+          "deliver_to": "John Doe",
+          "street": "123 Test St.",
+          "city": "Nashville",
+          "state": "TN",
+          "postalcode": "37011",
+          "country": "United States",
+          "country_code": "US",
+          "email": "johndoe@buyer.com",
+          "phone": "888-555-9876",
+          "data": {}
+        },
+        "bill_to": {
+          "address_id": "TN.04",
+          "address_name": "Test Corp. - Nashville Branch",
+          "deliver_to": "John Doe",
+          "street": "123 Test St.",
+          "city": "Nashville",
+          "state": "TN",
+          "postalcode": "37011",
+          "country": "United States",
+          "country_code": "US",
+          "email": "johndoe@buyer.com",
+          "phone": "888-555-9876",
+          "data": {}
+        },
+        "contact": {
+          "email": "jdoe@testbuyer.com",
+          "name": "John Doe"
+        },
+        "data": {}
+      },
+      "items": [
+        {
+          "currency": "USD",
+          "_position": 1,
+          "line_number": "101",
+          "quantity": 2,
+          "part_id": "45L017",
+          "uom": "EA",
+          "po_line_number": "101",
+          "description": "Low Arc Kitchen Faucet: Dominion Faucets, Silver, Chrome Finish, 1.75 gpm Flow Rate, CEC Compliant",
+          "unitprice": 41.15,
+          "classification": "56101720",
+          "comments": "This product is subject to a per-item packing fee for quantities less than 50.",
+          "discount": 0,
+          "discount_title": "Volume discount; 5% discount on quantities of ten or more.",
+          "shipping": 0,
+          "shipping_title": "FedEx 2Day",
+          "tax": 0,
+          "tax_rate": null,
+          "tax_title": null,
+          "row_total": 86.8,
+          "confirmation_status": {
+            "quantity": 1,
+            "type": "accept",
+            "shipment_date": "2022-01-01",
+            "uom": "EA",
+            "comments": null
+          },
+          "data": {}
+        }
+      ],
+      "details": {
+        "total": 103.97,
+        "subtotal": 85.33,
+        "currency": "USD",
+        "shipping": 10.09,
+        "shipping_title": "FedEx 2Day",
+        "tax": 8.64,
+        "tax_title": "Sales tax - 7% Tennessee"
+      }
+    }
+  }
+}
