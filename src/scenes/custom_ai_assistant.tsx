@@ -1,12 +1,23 @@
-import {makeScene2D, Rect, Txt, Layout, Code, Img} from '@motion-canvas/2d';
-import {beginSlide, createRef, waitFor, all, chain, ThreadGenerator, linear, 
-    slideTransition, Direction, makeRef, range, tween, loop
-} 
-  from '@motion-canvas/core';
+import { makeScene2D, Rect, Txt, Layout, Code, Img } from "@motion-canvas/2d";
+import {
+  beginSlide,
+  createRef,
+  waitFor,
+  all,
+  chain,
+  ThreadGenerator,
+  linear,
+  slideTransition,
+  Direction,
+  makeRef,
+  range,
+  tween,
+  loop,
+} from "@motion-canvas/core";
 
 export default makeScene2D(function* (view) {
   const title = createRef<Txt>();
-  view.add(<Txt ref={title} x={0} y={-500}/>);
+  view.add(<Txt ref={title} x={0} y={-500} />);
 
   const twigGenerator = createRef<Rect>();
   const twigGeneratorSystemInstructionsRect = createRef<Rect>();
@@ -23,104 +34,210 @@ export default makeScene2D(function* (view) {
   const outputRect = createRef<Rect>();
   const outputCode = createRef<Code>();
 
-  yield* slideTransition(Direction.Right);
-
   view.add(
     <Layout>
-      <Rect ref={twigGenerator} x={0} y={-250} width={250} height={400} fill={'#888888'} 
-            smoothCorners={true} radius={25} padding={25}>
+      <Rect
+        ref={twigGenerator}
+        x={0}
+        y={-250}
+        width={250}
+        height={400}
+        fill={"#888888"}
+        smoothCorners={true}
+        radius={25}
+        padding={25}
+      >
         <Txt y={-140}>Generator</Txt>
-        <Rect layout ref={twigGeneratorSystemInstructionsRect} y={-50} width={220} height={100} fill={"#bbbbbb"} padding={25}>
-          <Txt ref={twigGeneratorSystemInstructions} textWrap={true}/>
+        <Rect
+          layout
+          ref={twigGeneratorSystemInstructionsRect}
+          y={-50}
+          width={220}
+          height={100}
+          fill={"#bbbbbb"}
+          padding={25}
+        >
+          <Txt ref={twigGeneratorSystemInstructions} textWrap={true} />
         </Rect>
-        <Img ref={twigGeneratorDatabase} src="public/database.svg" width={130} x={0} y={100} opacity={0}/>
-        <Img ref={twigGeneratorMagnifier} src="public/magnifying-glass.svg" width={100} x={0} y={100} opacity={0}/>
+        <Img
+          ref={twigGeneratorDatabase}
+          src="public/database.svg"
+          width={130}
+          x={0}
+          y={100}
+          opacity={0}
+        />
+        <Img
+          ref={twigGeneratorMagnifier}
+          src="public/magnifying-glass.svg"
+          width={100}
+          x={0}
+          y={100}
+          opacity={0}
+        />
       </Rect>
-      <Rect ref={twigValidator} x={0} y={250} width={250} height={400} fill={'#888888'}
-            smoothCorners={true} radius={25} padding={25}>
+      <Rect
+        ref={twigValidator}
+        x={0}
+        y={250}
+        width={250}
+        height={400}
+        fill={"#888888"}
+        smoothCorners={true}
+        radius={25}
+        padding={25}
+      >
         <Txt y={-140}>Validator</Txt>
-        <Rect layout ref={twigValidatorSystemInstructionsRect} y={-50} width={220} height={100} fill={"#bbbbbb"} padding={25}>
-          <Txt ref={twigValidatorSystemInstructions} textWrap={true} fontSize={43}/>
+        <Rect
+          layout
+          ref={twigValidatorSystemInstructionsRect}
+          y={-50}
+          width={220}
+          height={100}
+          fill={"#bbbbbb"}
+          padding={25}
+        >
+          <Txt
+            ref={twigValidatorSystemInstructions}
+            textWrap={true}
+            fontSize={43}
+          />
         </Rect>
-        <Img ref={twigValidatorGear1} src={"public/gear.svg"} width={90} x={-35} y={70} alpha={0}/>
-        <Img ref={twigValidatorGear2} src={"public/gear.svg"} width={90} x={35} y={130} alpha={0}/>
+        <Img
+          ref={twigValidatorGear1}
+          src={"public/gear.svg"}
+          width={90}
+          x={-35}
+          y={70}
+          alpha={0}
+        />
+        <Img
+          ref={twigValidatorGear2}
+          src={"public/gear.svg"}
+          width={90}
+          x={35}
+          y={130}
+          alpha={0}
+        />
       </Rect>
-      <Rect layout ref={outputRect} x={550} y={0} width={750} height={950}
-        smoothCorners={true} radius={25} padding={25} fill={'#333333'} clip={true} opacity={0}>
-          <Code ref={outputCode} width={700} height={900}
-              fontSize={16} clip={true}></Code>
+      <Rect
+        layout
+        ref={outputRect}
+        x={550}
+        y={0}
+        width={750}
+        height={950}
+        smoothCorners={true}
+        radius={25}
+        padding={25}
+        fill={"#333333"}
+        clip={true}
+        opacity={0}
+      >
+        <Code
+          ref={outputCode}
+          width={700}
+          height={900}
+          fontSize={16}
+          clip={true}
+        ></Code>
       </Rect>
-    </Layout>);
+    </Layout>,
+  );
 
-  title().text('Custom AI assistants');
-  yield* beginSlide('Show twig generator system instructions');
+  yield* slideTransition(Direction.Right);
+
+  title().text("Custom AI assistants");
+  yield* beginSlide("Show twig generator system instructions");
   yield* all(
     twigGeneratorSystemInstructionsRect().position([-550, 250], 1),
-    twigGeneratorSystemInstructionsRect().size([600, 800], 1)
+    twigGeneratorSystemInstructionsRect().size([600, 800], 1),
   );
-  yield* typeOut(twigGeneratorSystemInstructions(), `You are an AI assistant specialized in transforming input data into DTD-compliant cXML invoices using TWIG templates. Your primary objective is to generate a TWIG template that accurately converts the user's input data into a valid cXML invoice.`, 0.02)
+  yield* typeOut(
+    twigGeneratorSystemInstructions(),
+    `You are an AI assistant specialized in transforming input data into DTD-compliant cXML invoices using TWIG templates. Your primary objective is to generate a TWIG template that accurately converts the user's input data into a valid cXML invoice.`,
+    0.02,
+  );
 
-  yield* beginSlide('Hide generator system instructions');
+  yield* beginSlide("Hide generator system instructions");
   yield* all(
     twigGeneratorSystemInstructionsRect().position([0, -50], 1),
     twigGeneratorSystemInstructionsRect().size([220, 100], 1),
-    twigGeneratorSystemInstructions().fontSize(8, 1)
+    twigGeneratorSystemInstructions().fontSize(8, 1),
   );
 
   yield* beginSlide("Show generator database");
   const files: Img[] = [];
   view.add(
     <Layout>
-      {range(35).map(index => (
-        <Img ref={makeRef(files, index)} 
+      {range(35).map((index) => (
+        <Img
+          ref={makeRef(files, index)}
           src="public/file-code.svg"
-          width={50} 
+          width={50}
           x={(index % 5) * 100 - 800}
           y={Math.floor(index / 5) * 100 - 300}
           opacity={0}
-          />
+        />
       ))}
-    </Layout>);
-  yield* all(...files.map((val: Img, index: number) => {
-    return chain(
-      waitFor(Math.random()),
-      val.opacity(1, 0.2)
-    );
-  }));
+    </Layout>,
+  );
+  yield* all(
+    ...files.map((val: Img, index: number) => {
+      return chain(waitFor(Math.random()), val.opacity(1, 0.2));
+    }),
+  );
 
   yield* beginSlide("Move files to database");
   yield* twigGeneratorDatabase().opacity(1, 0.5);
-  yield* all(...files.map((val: Img, index: number) => {
-    return chain(
-      waitFor(Math.random()),
-      val.absolutePosition(twigGeneratorDatabase().absolutePosition(), 0.5),
-      val.opacity(0, 0)
-    );
-  }));
+  yield* all(
+    ...files.map((val: Img, index: number) => {
+      return chain(
+        waitFor(Math.random()),
+        val.absolutePosition(twigGeneratorDatabase().absolutePosition(), 0.5),
+        val.opacity(0, 0),
+      );
+    }),
+  );
 
-  yield* beginSlide('Show validator system instructions');
+  yield* beginSlide("Show validator system instructions");
   yield* all(
     twigValidatorSystemInstructionsRect().position([-550, -250], 1),
-    twigValidatorSystemInstructionsRect().size([600, 800], 1)
+    twigValidatorSystemInstructionsRect().size([600, 800], 1),
   );
-  yield* typeOut(twigValidatorSystemInstructions(), `You are a highly skilled assistant with deep expertise in analyzing, validating, and optimizing TWIG templates for cXML invoice generation. Your primary task is to take a TWIG template output from another LLM assistant, validate it for correctness, fix any issues, and provide a structured explanation of the changes you made and why.`, 0.02)
+  yield* typeOut(
+    twigValidatorSystemInstructions(),
+    `You are a highly skilled assistant with deep expertise in analyzing, validating, and optimizing TWIG templates for cXML invoice generation. Your primary task is to take a TWIG template output from another LLM assistant, validate it for correctness, fix any issues, and provide a structured explanation of the changes you made and why.`,
+    0.02,
+  );
 
-  yield* beginSlide('Hide validator system instructions');
+  yield* beginSlide("Hide validator system instructions");
   yield* all(
     twigValidatorSystemInstructionsRect().position([0, -50], 1),
     twigValidatorSystemInstructionsRect().size([220, 100], 1),
-    twigValidatorSystemInstructions().fontSize(7, 1)
+    twigValidatorSystemInstructions().fontSize(7, 1),
   );
 
-  yield* beginSlide('Show input');
+  yield* beginSlide("Show input");
 
   const inputRect = createRef<Rect>();
   const inputCode = createRef<Code>();
   view.add(
-    <Rect layout ref={inputRect} x={-600} y={0} width={600} height={800} 
-      fill={"#333333"} smoothCorners={true} radius={25} padding={25} opacity={0}>
+    <Rect
+      layout
+      ref={inputRect}
+      x={-600}
+      y={0}
+      width={600}
+      height={800}
+      fill={"#333333"}
+      smoothCorners={true}
+      radius={25}
+      padding={25}
+      opacity={0}
+    >
       <Code ref={inputCode} fontSize={8} textWrap={"pre"}></Code>
-    </Rect>
+    </Rect>,
   );
   inputCode().code(`{
   "apikey": "ABCD1234efgh5678.IJKL9012mnopq",
@@ -223,8 +340,9 @@ export default makeScene2D(function* (view) {
   yield* all(
     twigGeneratorMagnifier().opacity(1, 0.2),
     searchAnim(twigGeneratorMagnifier(), 4),
-    typeAI(outputCode(),
-`{% set confirmation = params.confirmation %}
+    typeAI(
+      outputCode(),
+      `{% set confirmation = params.confirmation %}
 {% set header = confirmation.header %}
 {% set items = confirmation.items %}
 {% set details = confirmation.details %}
@@ -270,7 +388,9 @@ export default makeScene2D(function* (view) {
                     </PostalAddress>
                     <Email>{{ header.ship_to.email }}</Email>
                     <Phone>{{ header.ship_to.phone }}</Phone>
-                </Contact>`, 0.005)
+                </Contact>`,
+      0.005,
+    ),
   );
   yield* twigGeneratorMagnifier().opacity(0, 0.5);
 
@@ -292,8 +412,9 @@ export default makeScene2D(function* (view) {
     twigValidatorGear2().alpha(1, 0.2),
     twigValidatorGear1().rotation(1000, 4, linear),
     twigValidatorGear2().rotation(-1000, 4, linear),
-    typeAI(outputCode(),
-`{% set confirmation = params.confirmation %}
+    typeAI(
+      outputCode(),
+      `{% set confirmation = params.confirmation %}
 {% set header = confirmation.header %}
 {% set items = confirmation.items %}
 {% set details = confirmation.details %}
@@ -339,32 +460,39 @@ export default makeScene2D(function* (view) {
                     </PostalAddress>
                     <Email>{{ header.ship_to.email }}</Email>
                     <Phone>{{ header.ship_to.phone }}</Phone>
-                </Contact>`, 0.005)
+                </Contact>`,
+      0.005,
+    ),
   );
 
-  yield* beginSlide('end');
-
+  yield* beginSlide("end");
 });
 
 function* searchAnim(img: Img, duration: number): ThreadGenerator {
   const initialPosition = img.position();
   const circleRadius = 50;
-  yield* loop(duration, () => tween(1, value => {
-    img.position.x(initialPosition.x - (Math.sin(value * Math.PI * 2) * circleRadius));
-    img.position.y(initialPosition.y - (Math.cos(value * Math.PI * 2) * circleRadius));
-  }));
+  yield* loop(duration, () =>
+    tween(1, (value) => {
+      img.position.x(
+        initialPosition.x - Math.sin(value * Math.PI * 2) * circleRadius,
+      );
+      img.position.y(
+        initialPosition.y - Math.cos(value * Math.PI * 2) * circleRadius,
+      );
+    }),
+  );
 }
 
 function* typeOut(txt: Txt, text: string, delay: number): ThreadGenerator {
-  for(let n =0; n <= text.length; n++) {
-      txt.text(text.substring(0, n));
-      yield* waitFor(delay);
+  for (let n = 0; n <= text.length; n++) {
+    txt.text(text.substring(0, n));
+    yield* waitFor(delay);
   }
 }
 
 function* typeAI(code: Code, text: string, delay: number): ThreadGenerator {
   let words = text.split(" ");
-  for(let n =0; n <= words.length; n++) {
+  for (let n = 0; n <= words.length; n++) {
     code.code(words.slice(0, n).join(" "));
     yield* waitFor(delay);
   }
